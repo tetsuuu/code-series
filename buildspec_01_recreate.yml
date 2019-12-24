@@ -2,12 +2,17 @@
 version: 0.2
 
 phases:
-  build:
+  install:
     runtime-versions:
-      python: 3.7    
+      python: 3.7
+    commands:
+      - apt update
+      - pip install --upgrade awscli
+  build:
     commands:
        - cd ${CODEBUILD_SRC_DIR}/script/
        - pwd
+       - aws --version
        - echo "${job_description}"
        - |
             if [ $recreate_action = "date" ]; then
