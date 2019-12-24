@@ -11,7 +11,8 @@ phases:
     runtime-versions:
       python: 3.7
     commands:
-      - apk --update add jq
+      - yum update -y
+      - yum install jq python-pip -y
       - pip install --upgrade awscli
   build:
     commands:
