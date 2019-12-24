@@ -3,6 +3,8 @@ version: 0.2
 
 phases:
   build:
+    runtime-versions:
+      python: 3.7    
     commands:
        - cd ${CODEBUILD_SRC_DIR}/script/
        - pwd
