@@ -45,7 +45,7 @@ phases:
               echo $ACCOUNT_ID
               echo $ES_SERVER
               INSTANCE_ID=$(aws ec2 describe-instances --filter "Name=availability-zone,Values=ap-northeast-1c" --query 'Reservations[-1].Instances[].InstanceId' --region ap-northeast-1 --output text)
-              echo "INSTANCE_ID::::::::$INSTANCE_ID"
+              echo "INSTANCE_ID::::::::${INSTANCE_ID}"
             elif [ $recreate_action = "pwd" ];then
               pwd
             elif [ $recreate_action = "id" ];then
