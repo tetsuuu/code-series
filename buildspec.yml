@@ -5,6 +5,11 @@ env:
   variables:
     recreate_action: date
     job_description: this is local test01
+    ACCOUNT_ID: "sandbox_dayo!"
+    ES_SERVER: "http://demodayo.ap-northeast-1.elasticbeanstalk.com"
+  exported-variables:
+    - ACCOUNT_ID
+    - ES_SERVER
 
 phases:
   install:
@@ -16,13 +21,30 @@ phases:
       - pip install --upgrade awscli
   build:
     commands:
+       - . ${CODEBUILD_SRC_DIR}/script/demo_sand_aurora.env
        - cd ${CODEBUILD_SRC_DIR}/script/
-       - pwd
        - aws --version
        - echo "${job_description}"
        - |
             if [ $recreate_action = "date" ]; then
               date
+              echo $DB_CLUSTER
+              echo $DB_INSTANCE_WRITE_NAME
+              echo $DB_INSTANCE_READ_NAME
+              echo $DB_PARAM_GROUP
+              echo $DB_INSTANCE_VPC_SUBNET
+              echo $VPC_SECURITY_GROUP_IDS
+              echo $ENGINE
+              echo $ENGINE_VERSION
+              echo $DB_INSTANCE_CLASS
+              echo $DB_CLUSTER_PARAMETER_GROUP
+              echo $OPTION_GROUP
+              echo $DB_CLUSTER_AZ
+              echo $DB_INSTANCE_WRITE_AZ
+              echo $DB_INSTANCE_READ_AZ
+              echo $ACCOUNT_ID
+              echo $ES_SERVER
+              aws ec2 describe-instances
             elif [ $recreate_action = "pwd" ];then
               pwd
             elif [ $recreate_action = "id" ];then
