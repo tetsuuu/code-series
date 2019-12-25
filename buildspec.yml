@@ -16,8 +16,8 @@ phases:
     runtime-versions:
       python: 3.7
     commands:
-      - yum update -y
-      - yum install jq python-pip -y
+#      - yum update -y
+      - yum install jq python-pip mysql-client -y
       - pip install --upgrade awscli
   build:
     commands:
@@ -44,7 +44,7 @@ phases:
               echo $DB_INSTANCE_READ_AZ
               echo $ACCOUNT_ID
               echo $ES_SERVER
-              aws ec2 describe-instances
+              aws ec2 describe-instances --region ap-northeast-1
             elif [ $recreate_action = "pwd" ];then
               pwd
             elif [ $recreate_action = "id" ];then
