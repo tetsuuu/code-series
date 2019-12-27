@@ -16,7 +16,7 @@ phases:
     runtime-versions:
       python: 3.7
     commands:
-#      - yum update -y
+      - yum update -y
       - yum install jq python-pip mysql-client -y
       - pip install --upgrade awscli
   build:
@@ -47,7 +47,7 @@ phases:
               INSTANCE_ID=$(aws ec2 describe-instances --filter "Name=availability-zone,Values=ap-northeast-1c" --query 'Reservations[-1].Instances[].InstanceId' --region ap-northeast-1 --output text)
               echo "INSTANCE_ID::::::::${INSTANCE_ID}"
             elif [ $recreate_action = "pwd" ];then
-              pwd
+              sh ${CODEBUILD_SRC_DIR}/script/pwd.sh
             elif [ $recreate_action = "id" ];then
               id
             else
