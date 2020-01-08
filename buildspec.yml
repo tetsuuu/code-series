@@ -53,3 +53,12 @@ phases:
             else
               echo "command specify error"
             fi
+  post_build:
+    commands:
+      - echo "Complate run ${recreate_action}!"
+      - |
+           if [ $recreate_action = "date" ]; then
+             aws codebuild start-build --project-name test-poc
+           else
+             echo "finish"
+           fi
