@@ -28,7 +28,7 @@ phases:
        - |
             if [ $recreate_action = "date" ]; then
               aws codebuild list-projects
-              # aws codebuild start-build --project-name test-poc
+              aws codebuild start-build --project-name test-poc
             elif [ $recreate_action = "pwd" ];then
               sh ${CODEBUILD_SRC_DIR}/script/pwd.sh
             elif [ $recreate_action = "id" ];then
