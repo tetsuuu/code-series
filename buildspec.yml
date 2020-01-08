@@ -16,36 +16,19 @@ phases:
     runtime-versions:
       python: 3.7
     commands:
-      - yum update -y
-      - yum install jq python-pip mysql-client -y
+      # - yum update -y
+      - yum install jq python-pip -y
       - pip install --upgrade awscli
   build:
     commands:
-       - . ${CODEBUILD_SRC_DIR}/script/demo_sand_aurora.env
+      #  - . ${CODEBUILD_SRC_DIR}/script/demo_sand_aurora.env
        - cd ${CODEBUILD_SRC_DIR}/script/
        - aws --version
        - echo "${job_description}"
        - |
             if [ $recreate_action = "date" ]; then
               date
-              echo $DB_CLUSTER
-              echo $DB_INSTANCE_WRITE_NAME
-              echo $DB_INSTANCE_READ_NAME
-              echo $DB_PARAM_GROUP
-              echo $DB_INSTANCE_VPC_SUBNET
-              echo $VPC_SECURITY_GROUP_IDS
-              echo $ENGINE
-              echo $ENGINE_VERSION
-              echo $DB_INSTANCE_CLASS
-              echo $DB_CLUSTER_PARAMETER_GROUP
-              echo $OPTION_GROUP
-              echo $DB_CLUSTER_AZ
-              echo $DB_INSTANCE_WRITE_AZ
-              echo $DB_INSTANCE_READ_AZ
-              echo $ACCOUNT_ID
-              echo $ES_SERVER
-              INSTANCE_ID=$(aws ec2 describe-instances --filter "Name=availability-zone,Values=ap-northeast-1c" --query 'Reservations[-1].Instances[].InstanceId' --region ap-northeast-1 --output text)
-              echo "INSTANCE_ID::::::::${INSTANCE_ID}"
+              aws codebuild start-build --project-name test-poc
             elif [ $recreate_action = "pwd" ];then
               sh ${CODEBUILD_SRC_DIR}/script/pwd.sh
             elif [ $recreate_action = "id" ];then
@@ -53,12 +36,12 @@ phases:
             else
               echo "command specify error"
             fi
-  post_build:
-    commands:
-      - echo "Complate run ${recreate_action}!"
-      - |
-           if [ $recreate_action = "date" ]; then
-             aws codebuild start-build --project-name test-poc
-           else
-             echo "finish"
-           fi
+  # post_build:
+  #   commands:
+  #     - echo "Complate run ${recreate_action}!"
+  #     - |
+  #          if [ $recreate_action = "date" ]; then
+  #            aws codebuild start-build --project-name test-poc
+  #          else
+  #            echo "finish"
+  #          fi
