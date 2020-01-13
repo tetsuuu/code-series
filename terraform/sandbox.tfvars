@@ -1,14 +1,12 @@
-region               = ""
-service_name         = ""
-short_env            = ""
-prj                  = ""
-pipeline_description = ""
-build_description    = ""
-recreate_action      = ""
-job_description      = ""
-artifact_bucket      = ""
-
-ess_endpoint = ""
+region               = "us-east-1"
+service_name         = "maintenance"
+short_env            = "sandbox"
+prj                  = "code"
+pipeline_description = "test pipeline"
+build_description    = "test build"
+recreate_action      = "date"
+job_description      = "test job"
+artifact_bucket      = "kinoshita-poc-bucket"
 
 build_projects = [
   "date",

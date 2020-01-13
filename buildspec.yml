@@ -5,11 +5,6 @@ env:
   variables:
     recreate_action: date
     job_description: this is local test01
-    ACCOUNT_ID: "sandbox_dayo!"
-    ES_SERVER: "http://demodayo.ap-northeast-1.elasticbeanstalk.com"
-  exported-variables:
-    - ACCOUNT_ID
-    - ES_SERVER
 
 phases:
   install:

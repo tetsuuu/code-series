@@ -36,18 +36,6 @@ resource "aws_codebuild_project" "temp_build" {
       value = var.job_description
       type  = "PLAINTEXT"
     }
-
-    environment_variable {
-      name  = "ACCOUNT_ID"
-      value = data.aws_caller_identity.self.account_id
-      type  = "PLAINTEXT"
-    }
-
-    environment_variable {
-      name  = "ES_SERVER"
-      value = var.ess_endpoint
-      type  = "PLAINTEXT"
-    }
   }
 
   logs_config {

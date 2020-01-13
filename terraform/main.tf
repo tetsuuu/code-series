@@ -6,24 +6,24 @@ provider "aws" {
 data "aws_caller_identity" "self" {}
 
 variable "region" {
-  default = "ap-northeast-1"
+  default = "us-east-1"
 }
 
 variable "service_name" {
-  default = "njss"
+  default = "maintenance"
 }
 
 variable "short_env" {
-  default = "stg"
+  default = "sandbox"
 }
 
 variable "prj" {
-  default = "artom"
+  default = "code"
 }
 variable "artifact_bucket" {}
 
 variable "pipeline_description" {
-  default = "Saturday pipeline"
+  default = "test pipeline"
 }
 
 variable "retention_period" {
@@ -31,19 +31,15 @@ variable "retention_period" {
 }
 
 variable "build_description" {
-  default = "every Saturday Jobs"
+  default = "test Jobs"
 }
 
 variable "recreate_action" {
-  default = "06_enable_schedule"
+  default = "date"
 }
 
 variable "job_description" {
-  default = "Enable ECS task schedules"
-}
-
-variable "ess_endpoint" {
-  default = "http://njss-stg-ess-proxy.ap-northeast-1.elasticbeanstalk.com"
+  default = "echo date"
 }
 
 variable build_projects {

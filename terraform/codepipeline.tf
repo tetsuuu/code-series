@@ -53,7 +53,7 @@ resource "aws_codepipeline" "codepipeline" {
         version          = "1"
 
         configuration = {
-          "ProjectName" = "" // TODO List -> Map stage.key
+          "ProjectName" = aws_codebuild_project.temp_build.name // TODO List -> Map stage.key
         }
       }
     }
