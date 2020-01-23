@@ -12,7 +12,7 @@ phases:
       python: 3.7
     commands:
       # - yum update -y
-      - yum install jq python-pip -y
+      - yum install jq mysql python-pip -y
       - pip install --upgrade awscli
   build:
     commands:
@@ -23,19 +23,16 @@ phases:
        - |
             if [ $recreate_action = "date" ]; then
               date
+              mysql --help
             elif [ $recreate_action = "pwd" ];then
               sh ${CODEBUILD_SRC_DIR}/script/pwd.sh
+              mysql --help
             elif [ $recreate_action = "id" ];then
               id
+              mysql --help
             else
               echo "command specify error"
             fi
   post_build:
     commands:
-      - echo "Complate run ${recreate_action}!"
-      - |
-           if [ $recreate_action = "date" ]; then
-             aws codebuild start-build --project-name test-poc
-           else
-             echo "finish"
-           fi
+      - mysql --help
