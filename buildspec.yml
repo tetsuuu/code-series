@@ -5,9 +5,13 @@ phases:
     runtime-versions:
       python: 3.8
     commands:
+      - start_time=`date +%s`
       - curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       - unzip awscliv2.zip
       - ./aws/install
+      - end_time=`date +%s`
+      - time=$((end_time - start_time))
+      - echo $time
   build:
     commands:
       - aws --version
