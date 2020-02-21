@@ -10,7 +10,8 @@ phases:
       - ./aws/install
   build:
     commands:
-      - aws2 --version
+      - which aws2
+      - which aws
   post_build:
     commands:
       - echo "finish!!"
